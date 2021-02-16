@@ -1,5 +1,5 @@
 <template>
-  <ul class="films-list">
+  <ul class="films-list" v-if="!errorMsg">
     <li
       class="films-list__item my-4"
       v-for="(film, index) of films"
@@ -39,6 +39,7 @@
       </div>
     </li>
   </ul>
+  <div class="alert alert-danger" v-else>{{ errorMsg }}</div>
 </template>
 
 <script lang="ts">
@@ -53,6 +54,9 @@ export default defineComponent({
   computed: {
     films() {
       return store.state.films;
+    },
+    errorMsg() {
+      return store.state.errorMsg;
     }
   }
 });
