@@ -1,20 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="jumbotron">
+    <header class="page-header">
+      <div class="logo">[!]</div>
+      <h1 class="site-title">
+        <router-link to="/">KinoVTopku</router-link>
+      </h1>
+    </header>
   </div>
-  <router-view/>
+  <div class="container">
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
 #nav {
   padding: 30px;
 
@@ -26,5 +24,10 @@
       color: #42b983;
     }
   }
+}
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
