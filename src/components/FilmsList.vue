@@ -43,25 +43,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { FilmPreview } from '@/models/FilmModel';
 import store from '@/store';
 
 export default defineComponent({
   name: 'FilmsList',
-  // methods: {
-  //   async fetchFilms() {
-  //     const response = await fetch(
-  //       'https://api.themoviedb.org/3/discover/movie?api_key=5a04ce8778f4b2fcf7a03d527e0ac099&language=en-US&sort_by=vote_average.asc&include_adult=false&include_video=false&page=1&vote_average.gte=0.1'
-  //     );
-  //     const responseJson = await response.json();
-  //     this.films = [] as FilmPreview[];
-  //     responseJson.results.forEach((rawFilm: any) => {
-  //       const newFilm = new FilmPreview();
-  //       Object.assign(newFilm, rawFilm);
-  //       this.films.push(newFilm);
-  //     });
-  //   }
-  // },
   mounted() {
     store.dispatch('fetchFilms');
   },
@@ -83,7 +68,10 @@ export default defineComponent({
   color: darkgray;
 }
 .title + .info {
-  margin-top: -0.5rem;
+  margin-top: -0.4rem;
   margin-bottom: 0.5rem;
+}
+.overview > p {
+  text-align: justify;
 }
 </style>

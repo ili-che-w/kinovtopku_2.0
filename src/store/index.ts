@@ -17,11 +17,9 @@ export default createStore({
     }
   },
   actions: {
-    async fetchCurrentFilm({ commit }) {
-      // const response = await fetch(this.state.url);
-      // const responseJson = await response.json();
-      // const film: Film =
-      // await commit('setCurrentFilm', film);
+    fetchCurrentFilm({ commit }, filmId: number) {
+      const film = this.state.films.find((f) => f.id === filmId);
+      commit('setCurrentFilm', film);
     },
     async fetchFilms({ commit }) {
       const films = [] as Film[];

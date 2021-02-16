@@ -23,36 +23,19 @@
 <script lang="ts">
 import router from '@/router';
 import { defineComponent } from 'vue';
-import { Film } from '@/models/FilmModel';
+import store from '@/store';
 
 export default defineComponent({
   name: 'FilmCard',
-  methods: {
-    async fetchFilm(routeId: number) {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${routeId}?api_key=5a04ce8778f4b2fcf7a03d527e0ac099&append_to_response=images,credits`
-      );
-      const responseJson = await response.json();
-      Object.assign(this.film, responseJson);
-    }
-  },
   mounted() {
     const { currentRoute } = router;
-    if (currentRoute.value.params.id) {
-      const routeId: number = +currentRoute.value.params.id;
-      this.fetchFilm(routeId);
-    } else {
-      this.errorMsg = 'Error: No film';
+    const routeId: number = +currentRoute.value.params.id;
+    store.dispatch('fetchCurrentFilm', routeId);
+  },
+  computed: {
+    film() {
+      return store.state.currentFilm;
     }
-  },
-  data() {
-    return {
-      film: {} as Film,
-      errorMsg: ''
-    };
-  },
-  components: {
-    // ListGridView
   }
 });
 </script>
