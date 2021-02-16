@@ -44,30 +44,31 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { FilmPreview } from '@/models/FilmModel';
+import store from '@/store';
 
 export default defineComponent({
   name: 'FilmsList',
-  methods: {
-    async fetchFilms() {
-      const response = await fetch(
-        'https://api.themoviedb.org/3/discover/movie?api_key=5a04ce8778f4b2fcf7a03d527e0ac099&language=en-US&sort_by=vote_average.asc&include_adult=false&include_video=false&page=1&vote_average.gte=0.1'
-      );
-      const responseJson = await response.json();
-      this.films = [] as FilmPreview[];
-      responseJson.results.forEach((rawFilm: any) => {
-        const newFilm = new FilmPreview();
-        Object.assign(newFilm, rawFilm);
-        this.films.push(newFilm);
-      });
-    }
-  },
+  // methods: {
+  //   async fetchFilms() {
+  //     const response = await fetch(
+  //       'https://api.themoviedb.org/3/discover/movie?api_key=5a04ce8778f4b2fcf7a03d527e0ac099&language=en-US&sort_by=vote_average.asc&include_adult=false&include_video=false&page=1&vote_average.gte=0.1'
+  //     );
+  //     const responseJson = await response.json();
+  //     this.films = [] as FilmPreview[];
+  //     responseJson.results.forEach((rawFilm: any) => {
+  //       const newFilm = new FilmPreview();
+  //       Object.assign(newFilm, rawFilm);
+  //       this.films.push(newFilm);
+  //     });
+  //   }
+  // },
   mounted() {
-    this.fetchFilms();
+    store.dispatch('fetchFilms');
   },
-  data() {
-    return {
-      films: [] as Array<FilmPreview>
-    };
+  computed: {
+    films() {
+      return store.state.films;
+    }
   }
 });
 </script>
