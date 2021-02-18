@@ -1,7 +1,9 @@
 <template>
   <div class="jumbotron">
     <header class="page-header">
-      <div class="logo">[!]</div>
+      <div class="logo mr-4">
+        <img src="@/assets/img/popcorn.svg" alt="Logo" />
+      </div>
       <h1 class="site-title">
         <router-link to="/">KinoVTopku</router-link>
       </h1>
@@ -13,21 +15,12 @@
 </template>
 
 <style lang="scss">
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 .page-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+}
+.logo {
+  width: 100px;
 }
 </style>
